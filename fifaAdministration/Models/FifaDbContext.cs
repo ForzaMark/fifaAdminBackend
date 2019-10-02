@@ -9,6 +9,11 @@ namespace fifaAdministration.Models
         {
         }
 
-        public DbSet<FifaDbContext> FifaItems { get; set; }
+        public DbSet<Game> Games { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
