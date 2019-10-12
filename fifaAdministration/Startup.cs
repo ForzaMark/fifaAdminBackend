@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using fifaAdministration.Features.Group;
 using fifaAdministration.GameFeature;
 using fifaAdministration.Models;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,7 @@ namespace fifaAdministration
             services.AddCors();
             services.AddDbContext<FifaDbContext>(opt => opt.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = fifaAdministration; Trusted_Connection = True; ConnectRetryCount = 0"));
             services.AddTransient<IGameService, GameService>();
+            services.AddTransient<IGroupService, GroupService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

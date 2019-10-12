@@ -6,7 +6,7 @@ namespace fifaAdministration.GameFeature
     public interface IGameService {
         Game[] GetAllGames();
         void PostNewGame(Game game);
-        Game UpdateGame(Game game);
+        Game UpdateGame(int id, Game game);
     }
 
     public class GameService : IGameService
@@ -29,8 +29,15 @@ namespace fifaAdministration.GameFeature
             context.SaveChanges();
         }
 
-        public Game UpdateGame(Game game)
+        public Game UpdateGame(int id, Game game)
         {
+            var existingGame = context.Games.FirstOrDefault(g => g.Id == id);
+            existingGame.HomePlayer = game.HomePlayer;
+            existingGame.AwayPlayer = game.AwayPlayer;
+            existingGame.HomeGoals = game.HomeGoals;
+            existingGame.AwayGoals = game.AwayGoals;
+            existingGame.GroupId = game.GroupId;
+            context.SaveChanges();
             return new Game();
         }
     }

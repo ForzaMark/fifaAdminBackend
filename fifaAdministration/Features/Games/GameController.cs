@@ -1,4 +1,5 @@
-﻿using fifaAdministration.GameFeature.Representation;
+﻿using fifaAdministration.Features.Games.Representation;
+using fifaAdministration.GameFeature.Representation;
 using fifaAdministration.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,33 +16,33 @@ namespace fifaAdministration.GameFeature
             _gameService = gameService;
         }
 
-        [HttpGet]
-        public IActionResult GetAllGames()
-        {
-            return Ok(_gameService.GetAllGames());
-        }
-
         [HttpPost]
         public IActionResult PostNewGame([FromBody]GameWriteViewModel gameView)
         {
             var game = new Game
             {
+                HomePlayer = gameView.HomeName,
+                AwayPlayer = gameView.AwayName,
                 HomeGoals = gameView.HomeGoals,
-                AwayGoals = gameView.AwayGoals
+                AwayGoals = gameView.AwayGoals,
+                GroupId = gameView.GroupId
             };
             _gameService.PostNewGame(game);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult UpdateGame(GameWriteViewModel gameView)
+        public IActionResult EditGame(GameEditViewModel gameView)
         {
             var game = new Game
             {
+                HomePlayer = gameView.HomeName,
+                AwayPlayer = gameView.AwayName,
                 HomeGoals = gameView.HomeGoals,
-                AwayGoals = gameView.AwayGoals
+                AwayGoals = gameView.AwayGoals,
+                GroupId = gameView.GroupId
             };
-            _gameService.UpdateGame(game);
+            _gameService.UpdateGame(gameView.Id, game);
             return Ok();
         }
     }
