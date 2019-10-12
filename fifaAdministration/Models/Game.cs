@@ -8,14 +8,9 @@ namespace fifaAdministration.Models
         public int HomeGoals { get; set; }
         public int AwayGoals { get; set; }
 
-        [ForeignKey(nameof(HomePlayer))]
-        public int? HomePlayerId { get; set; }
+        [ForeignKey(nameof(Group))]
+        public int? GroupId { get; set; }
 
-        public virtual Player HomePlayer { get; set; }
-
-        //[ForeignKey(nameof(AwayPlayer))]
-        //public int? AwayPlayerId { get; set; }
-
-        //public virtual Player AwayPlayer { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

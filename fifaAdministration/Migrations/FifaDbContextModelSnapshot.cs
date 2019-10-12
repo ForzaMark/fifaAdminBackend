@@ -27,18 +27,18 @@ namespace fifaAdministration.Migrations
 
                     b.Property<int>("AwayGoals");
 
-                    b.Property<int>("HomeGoals");
+                    b.Property<int?>("GroupId");
 
-                    b.Property<int?>("HomePlayerId");
+                    b.Property<int>("HomeGoals");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HomePlayerId");
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("fifaAdministration.Models.Player", b =>
+            modelBuilder.Entity("fifaAdministration.Models.Group", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,14 +48,38 @@ namespace fifaAdministration.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("fifaAdministration.Models.Player", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("GroupId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
                     b.ToTable("Players");
                 });
 
             modelBuilder.Entity("fifaAdministration.Models.Game", b =>
                 {
-                    b.HasOne("fifaAdministration.Models.Player", "HomePlayer")
+                    b.HasOne("fifaAdministration.Models.Group", "Group")
                         .WithMany("Games")
-                        .HasForeignKey("HomePlayerId");
+                        .HasForeignKey("GroupId");
+                });
+
+            modelBuilder.Entity("fifaAdministration.Models.Player", b =>
+                {
+                    b.HasOne("fifaAdministration.Models.Group", "Group")
+                        .WithMany("Players")
+                        .HasForeignKey("GroupId");
                 });
 #pragma warning restore 612, 618
         }
