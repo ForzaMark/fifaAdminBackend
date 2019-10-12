@@ -31,11 +31,7 @@ namespace fifaAdministration.GameFeature
 
         public Game UpdateGame(Game game)
         {
-            var toUpdateGame = context.Games.FirstOrDefault(g => g.Home == game.Home && g.Away == game.Away);
-            toUpdateGame.AwayGoals = game.AwayGoals;
-            toUpdateGame.HomeGoals = game.HomeGoals;
-            context.SaveChanges();
-            return game;
+            return new Game();
         }
     }
 }

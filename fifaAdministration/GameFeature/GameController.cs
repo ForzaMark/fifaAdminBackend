@@ -26,8 +26,6 @@ namespace fifaAdministration.GameFeature
         {
             var game = new Game
             {
-                Home = gameView.HomeName,
-                Away = gameView.AwayName,
                 HomeGoals = gameView.HomeGoals,
                 AwayGoals = gameView.AwayGoals
             };
@@ -40,8 +38,6 @@ namespace fifaAdministration.GameFeature
         {
             var game = new Game
             {
-                Home = gameView.HomeName,
-                Away = gameView.AwayName,
                 HomeGoals = gameView.HomeGoals,
                 AwayGoals = gameView.AwayGoals
             };
