@@ -20,8 +20,8 @@ namespace fifaAdministration.Features.Group
         [HttpGet("{GroupId}/Games")]
         public IActionResult GetAllGamesOfGroup(int GroupId)
         {
-            _groupService.GetGamesOfGroup(GroupId);
-            return Ok();
+            var games = _groupService.GetGamesOfGroup(GroupId);
+            return Ok(games);
         }
     }
 }
